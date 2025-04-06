@@ -104,7 +104,7 @@ export default function Page() {
                 </div>
                 ) : filteredClasses.length > 0 ? (
                 filteredClasses.map((item, index) => (
-                    <div key={index} className="p-2 rounded-xl border bg-white shadow-sm w-44 min-h-32">
+                    <div key={index} className="p-2 rounded-xl border bg-white shadow-sm w-40 min-h-32">
                         <p className={`text-xs font-semibold ${item.status.includes('WAITING') ? 'text-pink-500' : 'text-green-600'}`}>
                             {item.status}
                         </p>
