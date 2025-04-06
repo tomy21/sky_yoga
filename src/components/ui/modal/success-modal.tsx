@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { Modal } from ".";
-import { Button } from "../button";
 import { GoCheckCircle } from "react-icons/go";
+import Button from "../button/Button";
 
 interface SuccessModalProps {
     isOpen: boolean;

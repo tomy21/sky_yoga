@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { Modal } from ".";
-import { Button } from "../button";
 import { IoTrashOutline } from "react-icons/io5";
+import Button from "../button/Button";
 
 interface DeleteConfirmationModalProps {
     isOpen: boolean;
