@@ -1,16 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "../ui/table";
-import Pagination from "./Pagination";
+import { Table, TableCell, TableHeader, TableRow } from "../ui/table";
+// import Pagination from "./Pagination";
 import Select from "../form/Select";
-import Badge from "../ui/badge/Badge";
-import Button from "../ui/button/Button";
-import { IoPencilOutline, IoTrashOutline } from "react-icons/io5";
-import { format } from "date-fns";
-import DeleteConfirmationModal from "../ui/modal/delete-confirmation";
-import SuccessModal from "../ui/modal/success-modal";
+// import Badge from "../ui/badge/Badge";
+// import Button from "../ui/button/Button";
+// import { IoPencilOutline, IoTrashOutline } from "react-icons/io5";
+// import { format } from "date-fns";
+// import DeleteConfirmationModal from "../ui/modal/delete-confirmation";
+// import SuccessModal from "../ui/modal/success-modal";
 // import { useDeleteMenu, useMenus } from "@/hooks/useMenu";
-import * as Icons from "../../icons/index";
+// import * as Icons from "../../icons/index";
 // import MenuFormModal from "../form/formadd/menu";
 
 // interface Menu {

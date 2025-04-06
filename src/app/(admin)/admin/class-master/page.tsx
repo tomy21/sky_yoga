@@ -1,6 +1,5 @@
 import PageBreadcrumb from '@/components/common/PageBreadCrumb';
 import TableClassMaster from '@/components/tables/TableClassMaster';
-import { Table } from 'lucide-react';
 import { Metadata } from 'next';
 import React from 'react'
 
