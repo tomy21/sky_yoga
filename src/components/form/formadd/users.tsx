@@ -108,6 +108,7 @@ const UsersForm: React.FC<UsersFormPayload> = ({
         phoneWa,
         address,
         emergencyContact,
+        agree: true,
       },
     };
 
