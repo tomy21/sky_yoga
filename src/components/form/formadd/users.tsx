@@ -31,6 +31,7 @@ interface UsersFormPayload {
       phoneWa?: string;
       address?: string;
       emergencyContact?: string;
+      agree: boolean | true;
     };
   };
 }
@@ -58,8 +59,6 @@ const UsersForm: React.FC<UsersFormPayload> = ({
 
   const createUser = useCreateUser();
   const updateUser = useUpdateUser();
-
-  console.log("initialData", initialData);
 
   useEffect(() => {
     if (!isAdd && initialData) {
