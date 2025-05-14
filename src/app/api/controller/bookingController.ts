@@ -1,9 +1,9 @@
 import { Booking } from "@prisma/client";
-import prisma from "../lib/prisma";
 import {
   createPaginatedResponse,
   createResponse,
 } from "../utils/ResponseHelpers";
+import { prisma } from "../lib/prisma";
 
 export async function createBooking(data: Booking) {
   try {

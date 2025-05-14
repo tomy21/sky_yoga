@@ -57,7 +57,8 @@ export default function ListAttendance({
               </td>
             </tr>
           ) : (
-            dataBooking.map((p: BookingItem, i: number) => (
+            Array.isArray(dataBooking) &&
+            dataBooking?.map((p: BookingItem, i: number) => (
               <tr key={p.id} className="border-b">
                 <td className="p-2">{i + 1}</td>
                 <td className="p-2">{p.user.username}</td>

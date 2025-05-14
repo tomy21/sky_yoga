@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import prisma from "../../lib/prisma";
 import bcrypt from "bcrypt";
 import { createToken, setTokenCookie } from "../../lib/auth";
+import { prisma } from "../../lib/prisma";
 
 export async function POST(req: Request) {
   try {
@@ -12,10 +12,10 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           code: 400001,
-          field: !identify ? 'identify' : 'password',
-          message: 'Email/Username dan Password wajib diisi',
+          field: !identify ? "identify" : "password",
+          message: "Email/Username dan Password wajib diisi",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -33,10 +33,10 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           code: 404001,
-          field: 'identify',
-          message: 'User tidak ditemukan',
+          field: "identify",
+          message: "User tidak ditemukan",
         },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -45,10 +45,10 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           code: 401001,
-          field: 'password',
-          message: 'Password salah',
+          field: "password",
+          message: "Password salah",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
 
     const response = NextResponse.json({
       code: 210200,
-      message: 'Login berhasil',
+      message: "Login berhasil",
       token,
       user: {
         id: user.id,
@@ -71,15 +71,13 @@ export async function POST(req: Request) {
 
     return setTokenCookie(response, token, remember);
   } catch (error) {
-    console.error('Login error:', error);
+    console.error("Login error:", error);
     return NextResponse.json(
       {
         code: 500000,
-        message: 'Terjadi kesalahan di server',
+        message: "Terjadi kesalahan di server",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
-
-

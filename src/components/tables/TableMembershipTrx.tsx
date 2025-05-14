@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DeleteConfirmationModal from "../ui/modal/delete-confirmation";
 import SuccessModal from "../ui/modal/success-modal";
 import Pagination from "./Pagination";
@@ -42,6 +42,7 @@ export default function TableMembershipTrx() {
   } | null>(null);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [mounted, setMounted] = useState(false);
 
   const membershipTrx: MembershipWithUser[] = data?.data || [];
   const meta = data?.meta;
@@ -101,17 +102,14 @@ export default function TableMembershipTrx() {
     }
   };
 
-  //   const formatCurrency = (
-  //     value: number,
-  //     locale: string = "id-ID",
-  //     currency: string = "IDR",
-  //   ) => {
-  //     return new Intl.NumberFormat(locale, {
-  //       style: "currency",
-  //       currency: currency,
-  //       minimumFractionDigits: 0,
-  //     }).format(value);
-  //   };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <>
       <div className="w-full overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">

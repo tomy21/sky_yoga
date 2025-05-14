@@ -1,4 +1,4 @@
-import prisma from "../lib/prisma";
+import { prisma } from "../lib/prisma";
 import { createResponse } from "../utils/ResponseHelpers";
 import { startOfDay, endOfDay } from "date-fns";
 

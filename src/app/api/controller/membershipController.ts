@@ -1,5 +1,5 @@
 import { Membership, StatusMembership } from "@prisma/client";
-import prisma from "../lib/prisma";
+import { prisma } from "../lib/prisma";
 import {
   createPaginatedResponse,
   createResponse,

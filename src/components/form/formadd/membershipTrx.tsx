@@ -52,7 +52,7 @@ const MembershipTrxForm: React.FC<MemberTypePayload> = ({
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const users = userResponse?.data || [];
-  console.log("users", users);
+
   useEffect(() => {
     if (!isAdd && initialData) {
       const user = users.find((u: any) => u.id === initialData.userId);
