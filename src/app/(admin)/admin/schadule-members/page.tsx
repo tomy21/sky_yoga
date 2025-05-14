@@ -5,15 +5,17 @@ import { Metadata } from 'next';
 import React from 'react'
 
 export const metadata: Metadata = {
-  title: "Schadule Membership",
+  title: "Schedule Class",
   description:
     "Manage your schadule membership",
-  // other metadata
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 export default function Page() {
   return (
     <>
-      <PageBreadcrumb pageTitle="Schadule Membership" />
+      <PageBreadcrumb pageTitle="Schedule Class" />
       <div className="">
         <TableSchadule/>
       </div>

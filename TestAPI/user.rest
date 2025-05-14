@@ -1,0 +1,74 @@
+### Create User
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "username": "johndoe",
+  "email": "johndoe@example.com",
+  "password": "securepassword",
+  "phone": "081234567890",
+  "role": "CUSTOMER",
+  "status": "ACTIVE",
+  "roleMasterId": 9,
+  "userDetail": {
+    "fullName": "John Doe",
+    "nickName": "John",
+    "email": "johndoe@example.com",
+    "phoneWa": "081234567890",
+    "address": "Jl. Mawar No. 1",
+    "emergencyContact": "081234567891"
+  }
+}
+
+### Get Paginated Users (with search)
+GET http://localhost:3000/api/users?page=1&limit=10
+### Get Paginated Users (with search)
+GET http://localhost:3000/api/user-detail-byrole
+
+### Get Paginated Users (with search)
+GET http://localhost:3000/api/customerAll?page=1&limit=10
+
+### Get All Users
+GET http://localhost:3000/api/users/all
+
+### Get All Users
+GET http://localhost:3000/api/users/get-customer
+
+### Get User By ID
+GET http://localhost:3000/api/users/1
+
+### Update User
+PUT http://localhost:3000/api/users/2
+Content-Type: application/json
+
+{
+  "username": "johnupdated",
+  "email": "johnupdated@example.com",
+  "password": "newsecurepassword",
+  "phone": "081234567899",
+  "role": "CUSTOMER",
+  "status": "ACTIVE",
+  "roleMasterId": 9,
+  "userDetail": {
+    "fullName": "John Updated",
+    "nickName": "Johnny",
+    "email": "johnupdated@example.com",
+    "phoneWa": "081234567899",
+    "address": "Jl. Anggrek No. 2",
+    "emergencyContact": "081234567888"
+  }
+}
+
+### Delete User
+DELETE http://localhost:3000/api/users/1
+
+
+### LOGIN
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "identify": "tomy22", 
+  "password": "sky123",
+  "remember": true
+}

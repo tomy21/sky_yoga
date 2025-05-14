@@ -1,40 +1,43 @@
 import GridShape from "@/components/common/GridShape";
 import ThemeTogglerTwo from "@/components/common/ThemeTogglerTwo";
-
 import { ThemeProvider } from "@/context/ThemeContext";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
+    <div className="relative p-6 bg-white dark:bg-gray-900 sm:p-0">
       <ThemeProvider>
-        <div className="relative flex lg:flex-row w-full h-screen justify-center flex-col  dark:bg-gray-900 sm:p-0">
+        <div className="relative flex lg:flex-row w-full h-screen justify-center flex-col dark:bg-gray-900 sm:p-0">
           {children}
-          <div className="lg:w-1/2 w-full h-full bg-brand-950 dark:bg-white/5 lg:grid items-center hidden">
-            <div className="relative items-center justify-center  flex z-1">
-              {/* <!-- ===== Common Grid Shape Start ===== --> */}
+
+          {/* Side Background with Overlay */}
+          <div className="lg:w-1/2 w-full h-full relative hidden lg:grid place-items-center">
+            {/* Background Image */}
+            <div className="absolute inset-0 bg-[url('/images/studio_1.jpg')] bg-cover bg-center" />
+            
+            {/* Dark overlay for contrast */}
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+
+            {/* GridShape and Logo content */}
+            <div className="relative z-10 flex flex-col items-center text-white space-y-6 px-6">
               <GridShape />
-              <div className="flex flex-col items-center max-w-xs">
-                <Link href="/" className="block mb-4">
-                  <Image
-                    width={231}
-                    height={48}
-                    src="./images/logo/auth-logo.svg"
-                    alt="Logo"
-                  />
-                </Link>
-                <p className="text-center text-gray-400 dark:text-white/60">
-                  Free and Open-Source Tailwind CSS Admin Dashboard Template
-                </p>
-              </div>
+
+              <Image
+                width={300}
+                height={60}
+                src="/images/logo_horizontal_bg_white-removebg-preview.png"
+                alt="Logo"
+                className="drop-shadow-lg"
+              />
+
+              <p className="text-center text-white/80 text-lg">
+                Dashboard <span className="font-semibold text-white">SKY YOGA</span> Admin
+              </p>
             </div>
           </div>
+
+          {/* Theme Toggler */}
           <div className="fixed bottom-6 right-6 z-50 hidden sm:block">
             <ThemeTogglerTwo />
           </div>

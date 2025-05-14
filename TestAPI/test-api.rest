@@ -1,0 +1,90 @@
+### Get All MemberTypes (with pagination)
+GET http://localhost:3000/api/memberType?page=1&limit=10
+
+### Get MemberType By ID
+GET http://localhost:3000/api/memberType/1
+
+### Create MemberType
+POST http://localhost:3000/api/memberType
+Content-Type: application/json
+
+{
+  "type": "Gold",
+  "duration": 12,
+  "amount": 500000
+}
+
+### Update MemberType
+PUT http://localhost:3000/api/memberType/1
+Content-Type: application/json
+
+{
+  "type": "Platinum",
+  "duration": 24,
+  "amount": 900000
+}
+
+### Delete MemberType
+DELETE http://localhost:3000/api/memberType/1
+
+
+###
+### Get All Memberships (with pagination)
+GET http://localhost:3000/api/membership?page=1&limit=10
+
+### Get Membership by ID
+GET http://localhost:3000/api/membership/1
+
+### Create Membership
+POST http://localhost:3000/api/membership
+Content-Type: application/json
+
+{
+  "userId": 4,
+  "memberTypeId": 1,
+  "startDate": "2025-05-01T00:00:00.000Z",
+  "endDate": "2025-06-01T00:00:00.000Z",
+  "status": "ACTIVE"
+}
+
+### Update Membership
+PUT http://localhost:3000/api/membership/1
+Content-Type: application/json
+
+{
+  "status": "EXPIRED"
+}
+
+### Delete Membership
+DELETE http://localhost:3000/api/membership/1
+
+
+###
+### Get All HistoryTransactions (with pagination)
+GET http://localhost:3000/api/historyTransaction?page=1&limit=10
+
+### Get HistoryTransaction by ID
+GET http://localhost:3000/api/historyTransaction/1
+
+### Create HistoryTransaction
+POST http://localhost:3000/api/historyTransaction
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "memberTypeId": 1,
+  "startDate": "2025-05-01T00:00:00.000Z",
+  "endDate": "2025-06-01T00:00:00.000Z",
+  "paymentImage": "upload/bukti.jpg"
+}
+
+### Update HistoryTransaction
+PUT http://localhost:3000/api/historyTransaction/1
+Content-Type: application/json
+
+{
+  "status": "EXPIRED"
+}
+
+### Delete HistoryTransaction
+DELETE http://localhost:3000/api/historyTransaction/1

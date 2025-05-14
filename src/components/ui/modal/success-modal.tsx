@@ -16,7 +16,7 @@ const SuccessModal: React.FC<SuccessModalProps> = ({ isOpen, onClose, message })
             isOpen={isOpen}
             onClose={onClose}
             className="bg-black/50"
-            width="w-1/4"
+            width="w-4/5 md:w-1/4 sm:w-1/4 "
             showCloseButton={false}
         >
             <div className="flex w-full flex-col items-center justify-center rounded-lg bg-white p-6 text-center shadow-lg">

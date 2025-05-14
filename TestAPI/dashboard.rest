@@ -1,0 +1,4 @@
+### Get Paginated Users (with search)
+GET http://localhost:3000/api/dashboard?date="2025-04-19"
+### Get Paginated Users (with search)
+GET http://localhost:3000/api//dashboard-monthly

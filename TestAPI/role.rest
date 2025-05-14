@@ -1,0 +1,29 @@
+### Get all roles (pagination supported)
+GET http://localhost:3000/api/role?page=1&limit=10
+Content-Type: application/json
+
+### Get role by ID
+GET http://localhost:3000/api/role/1
+Content-Type: application/json
+
+### Create a new role
+POST http://localhost:3000/api/role
+Content-Type: application/json
+
+{
+  "name": "HO",
+  "status": "ACTIVE"
+}
+
+### Update role by ID
+PUT http://localhost:3000/api/role/1
+Content-Type: application/json
+
+{
+  "name": "Super Admin",
+  "status": "Active"
+}
+
+### Delete role by ID
+DELETE http://localhost:3000/api/role/1
+Content-Type: application/json

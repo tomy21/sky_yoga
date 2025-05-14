@@ -1,0 +1,44 @@
+### Create Booking
+POST http://localhost:3000/api/booking
+Content-Type: application/json
+
+{
+  "userId": 9,
+  "scheduleId": 1,
+  "status": "BOKEED"
+}
+
+###
+
+### Get All Booking with Pagination
+GET http://localhost:3000/api/booking?page=1&limit=10
+
+###
+
+### Get All Booking with Pagination
+GET http://localhost:3000/api/booking/detail-schedule?scheduleId=2&page=1&limit=10
+
+###
+
+### Get All Booking with Pagination
+GET http://localhost:3000/api/booking/booking-byuser?userId=9&page=1&limit=10
+
+###
+
+### Get Booking by ID
+GET http://localhost:3000/api/booking/1
+
+###
+
+### Update Booking
+PUT http://localhost:3000/api/booking/1
+Content-Type: application/json
+
+{
+  "status": "CANCEL"
+}
+
+###
+
+### Delete Booking
+DELETE http://localhost:3000/api/booking/1

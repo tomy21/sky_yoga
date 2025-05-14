@@ -1,0 +1,219 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+
+}
+
+enum Role {
+  ADMIN
+  HO
+  CUSTOMER
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+enum StatusMembership {
+  ACTIVE
+  EXPIRED
+}
+
+enum StatusTransaction {
+  PAID
+  PENDING
+  CANCEL
+}
+
+enum ScheduleStatus {
+  AVAILABLE
+  FULL_BOOKED
+}
+
+enum BookingStatus {
+  BOKEED
+  CANCEL
+}
+
+enum PresenceStatus {
+  PRESENT
+  ABSENT
+  NOT_STARTED
+}
+
+model User {
+  id         Int         @id @default(autoincrement())
+  username   String      @unique
+  email      String      @unique
+  password   String
+  role       Role
+  phone      String
+  status     Status      @default(ACTIVE)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  userDetail UserDetail?
+
+  roleMasterId Int
+  roleMaster   RoleMaster? @relation(fields: [roleMasterId], references: [id])
+  bookings     Booking[]
+  emberships  Membership[]
+  historyTransactions HistoryTransaction[]
+}
+
+model UserDetail {
+  id               Int      @id @default(autoincrement())
+  userId           Int      @unique
+  fullName         String?
+  nickName         String?
+  email            String?
+  phoneWa          String?
+  address          String?
+  emergencyContact String?
+  agree            Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model RoleMaster {
+  id        Int      @id @default(autoincrement())
+  name      Role     @unique
+  status    Status   @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  permissions RolePermissions[]
+  users       User[]
+}
+
+model RolePermissions {
+  id        Int      @id @default(autoincrement())
+  roleId    Int
+  menuId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  role RoleMaster @relation(fields: [roleId], references: [id])
+  menu Menu       @relation(fields: [menuId], references: [id])
+}
+
+model Menu {
+  id        Int      @id @default(autoincrement())
+  name      String
+  path      String
+  icon      String?
+  parentId  Int?
+  position  Int
+  status    Status   @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  children Menu[] @relation("SubMenus")
+  parent   Menu?  @relation("SubMenus", fields: [parentId], references: [id])
+
+  permissions RolePermissions[]
+}
+
+model ClassMaster {
+  id        Int      @id @default(autoincrement())
+  name      String
+  type      String
+  status    Status
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  schedules Schedule[]
+}
+
+model CoachMaster {
+  id        Int      @id @default(autoincrement())
+  name      String
+  status    Status
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  schedules Schedule[]
+}
+
+model Schedule {
+  id        Int            @id @default(autoincrement())
+  classId   Int
+  coachId   Int
+  date      DateTime
+  time      String
+  quota     Int
+  used      Int            @default(0)
+  status    ScheduleStatus @default(AVAILABLE)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  class    ClassMaster @relation(fields: [classId], references: [id])
+  coach    CoachMaster @relation(fields: [coachId], references: [id])
+  bookings Booking[]
+}
+
+model Booking {
+  id         Int            @id @default(autoincrement())
+  userId     Int
+  scheduleId Int
+  status     BookingStatus
+  presence   PresenceStatus @default(NOT_STARTED)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  schedule Schedule @relation(fields: [scheduleId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+}
+
+model MemberType {
+  id        Int       @id @default(autoincrement())
+  type      String
+  duration  Int       // durasi dalam hari atau bulan (bebas kamu atur interpretasinya)
+  amount    Float
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  memberships Membership[]
+  historyTransactions HistoryTransaction[]
+}
+
+model Membership {
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  memberTypeId  Int
+  startDate     DateTime
+  endDate       DateTime
+  status        StatusMembership    @default(ACTIVE)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user          User       @relation(fields: [userId], references: [id])
+  memberType    MemberType @relation(fields: [memberTypeId], references: [id])
+}
+
+model HistoryTransaction {
+  id            Int       @id @default(autoincrement())
+  trxNo         String    @unique
+  userId        Int
+  memberTypeId  Int
+  duration      Int
+  startDate     DateTime
+  endDate       DateTime
+  amount        Float
+  status        StatusTransaction    @default(PENDING)
+  paymentImage  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user       User       @relation(fields: [userId], references: [id])
+  memberType MemberType @relation(fields: [memberTypeId], references: [id])
+}

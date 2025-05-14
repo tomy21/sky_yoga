@@ -1,0 +1,41 @@
+### Get all schedule (with optional pagination & search)
+GET http://localhost:3000/api/schedule?page=1&limit=10&search=yoga
+Content-Type: application/json
+
+###
+
+### Get schedule by ID
+GET http://localhost:3000/api/schedule/2
+Content-Type: application/json
+
+###
+
+### Create new schedule
+POST http://localhost:3000/api/schedule
+Content-Type: application/json
+
+{
+  "classId": 2,
+  "coachId": 2,
+  "date": "2025-04-20T08:00:00.000Z",
+  "time": "08:00",
+  "quota": 10
+}
+
+###
+
+### Update a schedule
+PUT http://localhost:3000/api/schedule/2
+Content-Type: application/json
+
+{
+  "time": "09:00",
+  "quota": 12,
+  "status": "AVAILABLE"
+}
+
+###
+
+### Delete a schedule
+DELETE http://localhost:3000/api/schedule/1
+Content-Type: application/json

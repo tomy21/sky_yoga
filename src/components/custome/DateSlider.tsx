@@ -12,10 +12,13 @@ export default function DateSlider({ onDateChange }: DateSliderProps) {
 
   // Buat 14 hari ke depan
   const dates = Array.from({ length: 14 }, (_, i) => dayjs().add(i, 'day'));
+  
 
   useEffect(() => {
-    onDateChange(selectedDate);
-  }, [selectedDate]);
+    if (typeof window !== 'undefined') {
+      onDateChange(selectedDate);
+    }
+  }, [onDateChange, selectedDate]);
 
   return (
     <div className="overflow-x-auto w-full py-2">

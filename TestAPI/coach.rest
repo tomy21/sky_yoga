@@ -1,0 +1,31 @@
+### Get all coach-master
+GET http://localhost:3000/api/coach-master?page=1&limit=10&search=
+Content-Type: application/json
+### Get all coach-master
+GET http://localhost:3000/api/coach-master/all
+Content-Type: application/json
+
+### Get menu by ID
+GET http://localhost:3000/api/coach-master/1
+Content-Type: application/json
+
+### Create a new menu
+POST http://localhost:3000/api/coach-master
+Content-Type: application/json
+
+{
+  "name": "Siska",
+  "status": "ACTIVE"
+}
+
+### Update menu by ID
+PUT http://localhost:3000/api/coach-master/1
+Content-Type: application/json
+
+{
+  "name":"Rudi"
+}
+
+### Delete menu by ID
+DELETE http://localhost:3000/api/coach-master/1
+Content-Type: application/json

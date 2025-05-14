@@ -8,10 +8,11 @@ import {
   CalenderIcon,
   ChevronDownIcon,
   GridIcon,
+  GroupIcon,
   HorizontaLDots,
   ListIcon,
-  UserCircleIcon,
 } from "../icons/index";
+import { User2 } from "lucide-react";
 
 type NavItem = {
   name: string;
@@ -20,31 +21,63 @@ type NavItem = {
   subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
 };
 
-const navItems: NavItem[] = [
+const navItemsHeadOffice: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
-    path: "/admin"
+    path: "/admin/dashboard"
   },
   {
     icon: <CalenderIcon />,
-    name: "Attandace",
-    path: "/admin/calendar",
+    name: "Overview",
+    path: "/admin/overview"
   },
-  
+  {
+    name: "Membership",
+    icon: <GroupIcon />,
+    subItems: [
+      { name: "Membership", path: "/admin/membership", pro: false },
+      { name: "Detail Membership", path: "/admin/detail-membership", pro: false },
+      { name: "History Transaction", path: "/admin/history-transaction", pro: false },
+    ],
+  },
   {
     name: "Master",
     icon: <ListIcon />,
     subItems: [
-      { name: "Membership", path: "/admin/membership", pro: false },
+      { name: "Member Type", path: "/admin/memberType", pro: false },
+      { name: "Coach Master", path: "/admin/coach-master", pro: false },
       { name: "Class Master", path: "/admin/class-master", pro: false },
-      { name: "Schadule Members", path: "/admin/schadule-members", pro: false },
+      { name: "Schedule Class", path: "/admin/schadule-members", pro: false },
     ],
   },
   {
-    icon: <UserCircleIcon />,
-    name: "User Profile",
-    path: "/profile",
+    name: "User Management",
+    icon: <User2 />,
+    subItems: [
+      { name: "Users", path: "/admin/users-list", pro: false },
+      { name: "Role", path: "/admin/role", pro: false },
+      // { name: "Role Permission", path: "/admin/class-master", pro: false },
+      // { name: "Menu", path: "/admin/menu-master", pro: false },
+    ],
+  },
+];
+
+const navItemsAdmin: NavItem[] = [
+  {
+    icon: <CalenderIcon />,
+    name: "Overview",
+    path: "/admin/overview"
+  },
+  {
+    name: "Master",
+    icon: <ListIcon />,
+    subItems: [
+      { name: "Coach Master", path: "/admin/coach-master", pro: false },
+      { name: "Membership", path: "/admin/membership", pro: false },
+      { name: "Class Master", path: "/admin/class-master", pro: false },
+      { name: "Schedule Class", path: "/admin/schadule-members", pro: false },
+    ],
   },
 ];
 
@@ -53,6 +86,21 @@ const navItems: NavItem[] = [
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
+  const [role, setRole] = useState("");
+  
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const user = localStorage.getItem("user");
+      if (user) {
+        try {
+          const userData = JSON.parse(user);
+          setRole(userData.role);
+        } catch (error) {
+          console.error("Failed to parse user from localStorage", error);
+        }
+      }
+    }
+  }, []);
 
   const renderMenuItems = (
     navItems: NavItem[],
@@ -187,9 +235,13 @@ const AppSidebar: React.FC = () => {
   const [subMenuHeight, setSubMenuHeight] = useState<Record<string, number>>(
     {}
   );
-  const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-   const isActive = useCallback((path: string) => path === pathname, [pathname]);
+  const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const normalizedPath = pathname.replace(/^\/admin/, "");
+  const isActive = useCallback((navPath: string) => {
+    const cleanNavPath = navPath.replace(/^\/admin/, "");
+    return normalizedPath.startsWith(cleanNavPath);
+  }, [normalizedPath]);
 
   
 
@@ -239,29 +291,29 @@ const AppSidebar: React.FC = () => {
           !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
         }`}
       >
-        <Link href="/">
+        <Link href="/admin/dashboard">
           {isExpanded || isHovered || isMobileOpen ? (
             <>
               <Image
                 className="dark:hidden"
-                src="/images/logo/logo.svg"
+                src="/images/logo_horizontal_bg_white-removebg-preview.png"
                 alt="Logo"
                 width={150}
                 height={40}
               />
               <Image
                 className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
+                src="/images/logo_horizontal_bg_white-removebg-preview.png"
                 alt="Logo"
                 width={150}
-                height={40}
+                height={30}
               />
             </>
           ) : (
             <Image
-              src="/images/logo/logo-icon.svg"
+              src="/images/logo_bg_white-removebg-preview.png"
               alt="Logo"
-              width={32}
+              width={60}
               height={32}
             />
           )}
@@ -284,7 +336,8 @@ const AppSidebar: React.FC = () => {
                   <HorizontaLDots />
                 )}
               </h2>
-              {renderMenuItems(navItems, "main")}
+              {role === "ADMIN" && renderMenuItems(navItemsAdmin, "main")}
+              {role === "HO" && renderMenuItems(navItemsHeadOffice, "main")}
             </div>
 
             

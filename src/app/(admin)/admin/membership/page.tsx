@@ -1,20 +1,23 @@
 import PageBreadcrumb from '@/components/common/PageBreadCrumb';
-import TableMembership from '@/components/tables/TableMembership';
+import TableMembershipTrx from '@/components/tables/TableMembershipTrx';
 import { Metadata } from 'next';
 import React from 'react'
 
 export const metadata: Metadata = {
-  title: "Membership",
-  description:
-    "Manage your membership",
-  // other metadata
-};
-export default function Page() {
+    title: "Membership",
+    description:
+      "Manage your membership",
+    icons: {
+      icon: '/favicon.ico',
+    },
+  };
+
+export default function page() {
   return (
     <>
       <PageBreadcrumb pageTitle="Membership" />
       <div className="">
-        <TableMembership/>
+        <TableMembershipTrx/>
       </div>
     </>
   )

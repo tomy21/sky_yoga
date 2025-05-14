@@ -24,10 +24,10 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
             isOpen={isOpen}
             onClose={onClose}
             className="bg-black/50"
-            width="w-[350px]"
+            width="w-4/5 md:[350px] sm:w-[350px] "
             showCloseButton={false}
         >
-            <div className="flex w-[350px] flex-col items-center justify-center rounded-lg bg-white p-6 text-center shadow-lg">
+            <div className="flex w-full md:w-[350px] sm:w-[350px] flex-col items-center justify-center rounded-lg bg-white p-6 text-center shadow-lg">
                 <IoTrashOutline size={50} className="mb-3 text-red-600" />
                 <p className="text-gray-700">
                     Are you sure you want to delete{" "}

@@ -1,0 +1,32 @@
+### Get all class-master
+GET http://localhost:3000/api/class-master?page=1&limit=10&search=
+Content-Type: application/json
+### Get all class-master
+GET http://localhost:3000/api/class-master/all
+Content-Type: application/json
+
+### Get menu by ID
+GET http://localhost:3000/api/class-master/1
+Content-Type: application/json
+
+### Create a new menu
+POST http://localhost:3000/api/class-master
+Content-Type: application/json
+
+{
+  "name": "Dashboard",
+  "type": "/dashboard",
+  "status": "ACTIVE"
+}
+
+### Update menu by ID
+PUT http://localhost:3000/api/class-master/2
+Content-Type: application/json
+
+{
+  "type":"testing type"
+}
+
+### Delete menu by ID
+DELETE http://localhost:3000/api/class-master/1
+Content-Type: application/json

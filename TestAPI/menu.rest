@@ -1,0 +1,35 @@
+### Get all menus
+GET http://localhost:3000/api/menu?page=1&limit=10&search=
+Content-Type: application/json
+### Get all menus
+GET http://localhost:3000/api/menu/all
+Content-Type: application/json
+
+### Get menu by ID
+GET http://localhost:3000/api/menu/1
+Content-Type: application/json
+
+### Create a new menu
+POST http://localhost:3000/api/menu
+Content-Type: application/json
+
+{
+  "parentId": null,
+  "name": "Dashboard",
+  "path": "/dashboard",
+  "icon": "Home",
+  "position": 1,
+  "status": "ACTIVE"
+}
+
+### Update menu by ID
+PUT http://localhost:3000/api/menu/4
+Content-Type: application/json
+
+{
+  "position":4
+}
+
+### Delete menu by ID
+DELETE http://localhost:3000/api/menu/1
+Content-Type: application/json

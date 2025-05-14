@@ -7,7 +7,9 @@ export const metadata: Metadata = {
   title: "Class Master",
   description:
     "Manage your class",
-  // other metadata
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 export default function Page() {
   return (

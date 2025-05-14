@@ -1,5 +1,6 @@
 "use client";
 
+import ProtectedLayout from "@/app/(protected)/layout";
 import { useSidebar } from "@/context/SidebarContext";
 import AppHeader from "@/layout/AppHeader";
 import AppSidebar from "@/layout/AppSidebar";
@@ -22,17 +23,18 @@ export default function AdminLayout({
 
   return (
     <div className="min-h-screen xl:flex">
-      {/* Sidebar and Backdrop */}
       <AppSidebar />
       <Backdrop />
-      {/* Main Content Area */}
-      <div
-        className={`flex-1 transition-all  duration-300 ease-in-out ${mainContentMargin}`}
-      >
-        {/* Header */}
-        <AppHeader />
-        {/* Page Content */}
-        <div className="p-2 mx-auto max-w-(--breakpoint-2xl) md:p-2">{children}</div>
+        <div
+          className={`flex-1 transition-all  duration-300 ease-in-out ${mainContentMargin}`}
+        >
+          <AppHeader />
+        <div className="p-2 mx-auto max-w-(--breakpoint-2xl) md:p-2">
+          <ProtectedLayout>
+            {children}
+          </ProtectedLayout>
+          
+        </div>
       </div>
     </div>
   );
