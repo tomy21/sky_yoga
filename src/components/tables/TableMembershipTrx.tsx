@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import DeleteConfirmationModal from "../ui/modal/delete-confirmation";
-import SuccessModal from "../ui/modal/success-modal";
+// import DeleteConfirmationModal from "../ui/modal/delete-confirmation";
+// import SuccessModal from "../ui/modal/success-modal";
 import Pagination from "./Pagination";
 import Select from "../form/Select";
 import {
@@ -13,11 +13,11 @@ import {
   TableRow,
 } from "../ui/table";
 import Button from "../ui/button/Button";
-import { useDeleteMembership, useMembership } from "@/hooks/useMembership";
+import { useMembership } from "@/hooks/useMembership";
 import { format } from "date-fns";
 import Badge from "../ui/badge/Badge";
-import { IoPencilOutline, IoTrashOutline } from "react-icons/io5";
-import MembershipTrxForm from "../form/formadd/membershipTrx";
+// import { IoPencilOutline, IoTrashOutline } from "react-icons/io5";
+// import MembershipTrxForm from "../form/formadd/membershipTrx";
 import { MembershipWithUser } from "@/app/api/controller/membershipController";
 
 export default function TableMembershipTrx() {
@@ -29,26 +29,26 @@ export default function TableMembershipTrx() {
     parseInt(selectedLimit),
     search,
   );
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAdd, setIsAdd] = useState(true);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectMembership, setSelectMembership] = useState<{
-    id: number;
-    userId: number;
-    memberTypeId: number;
-    startDate: Date;
-    endDate: Date;
-    status: "ACTIVE" | "EXPIRED";
-  } | null>(null);
-  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
-  const [message, setMessage] = useState("");
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isAdd, setIsAdd] = useState(true);
+  // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  // const [selectMembership, setSelectMembership] = useState<{
+  //   id: number;
+  //   userId: number;
+  //   memberTypeId: number;
+  //   startDate: Date;
+  //   endDate: Date;
+  //   status: "ACTIVE" | "EXPIRED";
+  // } | null>(null);
+  // const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  // const [message, setMessage] = useState("");
   const [mounted, setMounted] = useState(false);
 
   const membershipTrx: MembershipWithUser[] = data?.data || [];
   const meta = data?.meta;
   const totalPages = meta?.totalPages || 1;
 
-  const deleteMembership = useDeleteMembership();
+  // const deleteMembership = useDeleteMembership();
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -61,46 +61,46 @@ export default function TableMembershipTrx() {
   ];
 
   const handleModalAdd = () => {
-    setIsModalOpen(true);
-    setIsAdd(true);
+    // setIsModalOpen(true);
+    // setIsAdd(true);
   };
 
-  const handleModalEdit = (items: {
-    id: number;
-    userId: number;
-    memberTypeId: number;
-    startDate: Date;
-    endDate: Date;
-    status: "ACTIVE" | "EXPIRED";
-  }) => {
-    setSelectMembership(items);
-    setIsModalOpen(true);
-    setIsAdd(false);
-  };
+  // const handleModalEdit = (items: {
+  //   id: number;
+  //   userId: number;
+  //   memberTypeId: number;
+  //   startDate: Date;
+  //   endDate: Date;
+  //   status: "ACTIVE" | "EXPIRED";
+  // }) => {
+  //   setSelectMembership(items);
+  //   setIsModalOpen(true);
+  //   setIsAdd(false);
+  // };
 
-  const handleDeleteClick = (items: {
-    id: number;
-    userId: number;
-    memberTypeId: number;
-    startDate: Date;
-    endDate: Date;
-    status: "ACTIVE" | "EXPIRED";
-  }) => {
-    setSelectMembership(items);
-    setIsDeleteModalOpen(true);
-  };
+  // const handleDeleteClick = (items: {
+  //   id: number;
+  //   userId: number;
+  //   memberTypeId: number;
+  //   startDate: Date;
+  //   endDate: Date;
+  //   status: "ACTIVE" | "EXPIRED";
+  // }) => {
+  //   setSelectMembership(items);
+  //   setIsDeleteModalOpen(true);
+  // };
 
-  const handleConfirmDelete = () => {
-    if (selectMembership) {
-      deleteMembership.mutate(selectMembership.id, {
-        onSuccess: () => {
-          setIsDeleteModalOpen(false);
-          setIsSuccessModalOpen(true);
-          setMessage("Membership deleted successfully.");
-        },
-      });
-    }
-  };
+  // const handleConfirmDelete = () => {
+  //   if (selectMembership) {
+  //     deleteMembership.mutate(selectMembership.id, {
+  //       onSuccess: () => {
+  //         setIsDeleteModalOpen(false);
+  //         setIsSuccessModalOpen(true);
+  //         setMessage("Membership deleted successfully.");
+  //       },
+  //     });
+  //   }
+  // };
 
   useEffect(() => {
     setMounted(true);
@@ -127,7 +127,7 @@ export default function TableMembershipTrx() {
               variant="primary"
               className="bg-blue-light-500"
             >
-              Order Membership
+              Import Data Member
             </Button>
           </div>
         </div>
@@ -173,12 +173,12 @@ export default function TableMembershipTrx() {
                   >
                     Status
                   </TableCell>
-                  <TableCell
+                  {/* <TableCell
                     isHeader
                     className="text-theme-xs px-5 py-3 text-center font-medium text-gray-500 dark:text-gray-400"
                   >
                     Action
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               </TableHeader>
 
@@ -237,7 +237,7 @@ export default function TableMembershipTrx() {
                           {items.status}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-theme-sm px-4 py-3 text-start text-gray-500 dark:text-gray-400">
+                      {/* <TableCell className="text-theme-sm px-4 py-3 text-start text-gray-500 dark:text-gray-400">
                         <div className="flex w-full items-center justify-evenly">
                           <IoPencilOutline
                             onClick={() => handleModalEdit(items)}
@@ -250,7 +250,7 @@ export default function TableMembershipTrx() {
                             size={20}
                           />
                         </div>
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   ))
                 )}
@@ -281,13 +281,13 @@ export default function TableMembershipTrx() {
         </div>
       </div>
 
-      <MembershipTrxForm
+      {/* <MembershipTrxForm
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         isAdd={isAdd}
         initialData={selectMembership ?? undefined}
-      />
-      <DeleteConfirmationModal
+      /> */}
+      {/* <DeleteConfirmationModal
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
         onConfirm={handleConfirmDelete}
@@ -298,7 +298,7 @@ export default function TableMembershipTrx() {
         isOpen={isSuccessModalOpen}
         onClose={() => setIsSuccessModalOpen(false)}
         message={message}
-      />
+      /> */}
     </>
   );
 }

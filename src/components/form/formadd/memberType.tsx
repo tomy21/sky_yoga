@@ -92,14 +92,14 @@ const MemberTypeForm: React.FC<MemberTypePayload> = ({
       >
         <div className="w-full rounded-lg bg-white p-6 shadow-lg">
           <h2 className="mb-4 text-xl font-semibold">
-            {isAdd ? "Add Coach Master" : "Edit Coach Master"}
+            {isAdd ? "Add Type Member" : "Edit Type Member"}
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Input Nama Role */}
             <div>
               <label className="block font-medium text-gray-700">
-                Coach Name
+                Type Member
               </label>
               <input
                 type="text"
@@ -114,7 +114,7 @@ const MemberTypeForm: React.FC<MemberTypePayload> = ({
             {/* Duration */}
             <div>
               <label className="mb-1 block text-sm font-semibold text-gray-700">
-                Duration (in Month)
+                Duration
               </label>
               <input
                 type="number"
@@ -131,7 +131,7 @@ const MemberTypeForm: React.FC<MemberTypePayload> = ({
             {/* Amount */}
             <div>
               <label className="mb-1 block text-sm font-semibold text-gray-700">
-                Amount (in Rupiah)
+                Amount
               </label>
               <div className="relative">
                 {/* <span className="absolute left-3 top-2.5 text-gray-500 text-sm">Rp</span> */}
